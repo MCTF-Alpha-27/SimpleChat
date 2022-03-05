@@ -1,2 +1,2 @@
-# SimpleChat
-一个简单的聊天软件，支持载入插件
+# SimpleChat Plugins
+SimpleChat的官方插件
