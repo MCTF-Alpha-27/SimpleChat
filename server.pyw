@@ -44,7 +44,6 @@ s.bind((host, port))  # 绑定地址和端口号
 
 if __name__ == "__main__":
     s.listen(accept_num)
-    print("服务器已经开启，正在监听用户的请求...")
 
     while True:
         conn, address = s.accept()

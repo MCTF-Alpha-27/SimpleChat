@@ -1,10 +1,11 @@
 """
 主体文件，负责许多重要工作，如安装前置、为其它文件提供参数等
 """
-import os
 import random
+import os
+from threading import Thread
 
-__version__ = "1.0.0"  # 版本
+__version__ = "2.0.0-Alpha"  # 版本
 __author__ = "Jerry"  # 作者
 
 with open("name.ini", "w") as f:
@@ -13,17 +14,13 @@ with open("name.ini", "w") as f:
 with open("msg_type.ini", "w") as f:
     f.write("normal")
 
+def run(file):
+    os.system("python %s"%file)
+
+server = Thread(target=run, args=("server.pyw",)) # 服务端线程
+client = Thread(target=run, args=("client.pyw",)) # 客户端线程
+t = [server, client]
+
 if __name__ == "__main__":
-    try:  # 安装前置
-        import easy_functions as ef
-    except ModuleNotFoundError:
-        print('Installing lib file "easy_functions"')
-        while True:
-            if os.system("pip install easy_functions") == 0:
-                import easy_functions as ef
-
-                break
-            print("Installation failed. Trying again")
-
-    ef.start("server.pyw")  # 启动服务器
-    ef.start("client.pyw")  # 启动客户端
+    for i in t:
+        i.start()

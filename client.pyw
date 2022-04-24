@@ -5,8 +5,6 @@ from threading import Thread
 from address import *
 from plugins.lib.root import *
 
-os.system("taskkill /im cmd.exe")  # 关闭cmd
-
 s.connect((host, port))  # 与服务器建立连接
 
 root.title("SimpleChat")  # 标题

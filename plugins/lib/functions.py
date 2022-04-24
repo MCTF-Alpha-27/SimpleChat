@@ -6,6 +6,7 @@ import os
 import sys
 import json
 from .root import *
+from main import t
 
 def restart(): # 重启
     if msg.askokcancel("重启","你确定要重启吗？") == False:
@@ -14,7 +15,7 @@ def restart(): # 重启
         sys.exit(1)
     except SystemExit:
         ef.start("run.bat")
-        os.system("taskkill /f /im pythonw.exe")
+        os.system("taskkill /f /im python.exe")
 
 def eof(): # 退出
     if msg.askokcancel("退出","你确定要退出吗？") == False:
@@ -22,7 +23,7 @@ def eof(): # 退出
     try:
         sys.exit(1)
     except SystemExit:
-        os.system("taskkill /f /im pythonw.exe /t")
+        os.system("taskkill /f /im python.exe /t")
 
 def open_plugin_dir(): #打开插件文件夹
     ef.start("%s\\plugins"%os.getcwd())
