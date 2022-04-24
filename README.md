@@ -1,2 +1,3 @@
-# SimpleChat
-一个简单的聊天软件，支持载入插件
+# SimpleChat-thread
+SimpleChat的多线程版本，开发中
+目前要解决的问题：把线程启动后烦人的cmd窗口给隐藏了
