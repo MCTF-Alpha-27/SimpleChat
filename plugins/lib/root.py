@@ -18,13 +18,9 @@ def display(text, end = "\n"): # 显示消息
     text_message.insert(END, end)
 
 def send_to_server(text): # 向服务器发送信息
-    with open("msg_type.ini","w") as f:
-        f.write("system")
     ef.wait(0.1)
     s.send(bytes(text, "utf-8"))
     ef.wait(0.1)
-    with open("msg_type.ini","w") as f:
-        f.write("normal")
 
 def send(): # 发送消息
     send_msg = text_text.get("0.0", END)

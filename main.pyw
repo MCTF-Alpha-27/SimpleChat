@@ -3,9 +3,10 @@
 """
 import random
 import os
+import subprocess
 from threading import Thread
 
-__version__ = "2.0.0"  # 版本
+__version__ = "2.0.1"  # 版本
 __author__ = "Jerry"  # 作者
 
 try:
@@ -22,8 +23,13 @@ with open("name.ini", "w") as f:
 with open("msg_type.ini", "w") as f:
     f.write("normal")
 
+def run(file):
+    subprocess.run("pythonw %s"%file, shell=True)
+
 server = Thread(target=ef.start, args=("server.pyw",)) # 服务端线程
 client = Thread(target=ef.start, args=("client.pyw",)) # 客户端线程
+#server = Thread(target=run, args=("server.pyw",))
+#client = Thread(target=run, args=("server.pyw",))
 t = [server, client]
 
 if __name__ == "__main__":
