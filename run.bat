@@ -1,3 +1,5 @@
 @echo off
 
-py main.py
+taskkill /im pythonw.exe >nul
+pythonw main.pyw
+exit

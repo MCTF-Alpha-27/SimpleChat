@@ -1,2 +1,3 @@
-# SimpleChat
-一个简单的聊天软件，支持载入插件
+# SimpleChat-thread
+SimpleChat的多线程版本，开发中<br>
+目前的bug：重新启动选项无效

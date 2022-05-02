@@ -35,7 +35,7 @@ for i in os.listdir(".\\plugins"): # 插件文件夹下所有文件
         if i != "__init__.py": # 筛除__init__.py
             plugin = importlib.import_module("plugins.%s"%i.strip("py").strip(".")) # 导入插件
 
-            if plugin.__doc__ == None: # 如果插件文档不存在，则设定默认值
+            if plugin.__doc__ is None: # 如果插件文档不存在，则设定默认值
                 plugin.__doc__ = "No description"
             
             i = i.replace(".py","")
