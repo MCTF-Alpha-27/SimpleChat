@@ -3,11 +3,18 @@
 """
 import random
 import os
-import easy_functions as ef
 from threading import Thread
 
 __version__ = "2.0.0"  # 版本
 __author__ = "Jerry"  # 作者
+
+try:
+    import easy_functions as ef
+except ModuleNotFoundError:
+    while True:
+        if os.system("pip install easy_functions") == 0:
+            import easy_functions as ef
+            break
 
 with open("name.ini", "w") as f:
     f.write("User" + str(random.randint(1, 10000)))
