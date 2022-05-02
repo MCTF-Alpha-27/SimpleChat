@@ -4,7 +4,7 @@
 from .lib.root import *
 
 __name__ = "多姿多彩的ID"
-__version__ = "1.2"
+__version__ = "1.3"
 __author__ = "Jerry"
 
 def rename():
@@ -18,15 +18,17 @@ def rename():
     
     def ID_change():
         nonlocal rename_input
+        with open("name.ini", "r") as f:
+            last_ID = f.read()
         with open("name.ini", "w") as f:
             f.write(rename_input.get())
             
         msg.showinfo("更改ID","成功更改ID为%s"%(' "' + rename_input.get() + '"'))
+        send_to_server('"%s" 将自己的ID更改为 "%s"\n'%(last_ID, rename_input.get()))
 
     rename_ID = ttk.Button(rename, text = "更改ID", command = ID_change)
     quit_ = ttk.Button(rename, text = "完成", command = rename.destroy)
 
-    #rename_text.pack()
     rename_input.pack()
     empty.pack()
     rename_ID.pack(side=tk.LEFT)
