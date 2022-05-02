@@ -4,13 +4,13 @@
 from .lib.root import *
 
 __name__ = "多姿多彩的ID"
-__version__ = "1.1"
+__version__ = "1.2"
 __author__ = "Jerry"
 
 def rename():
     rename = tk.Tk()
     rename.title("更改ID")
-    rename.minsize(250, 100)
+    rename.minsize(300, 100)
 
     rename_input = ttk.Entry(rename)
 
@@ -26,10 +26,11 @@ def rename():
     rename_ID = ttk.Button(rename, text = "更改ID", command = ID_change)
     quit_ = ttk.Button(rename, text = "完成", command = rename.destroy)
 
-    rename_input.grid(row=0, column=1)
-    empty.grid(row=1, column=0)
-    rename_ID.grid(row=2, column=0)
-    quit_.grid(row=2, column=1)
+    #rename_text.pack()
+    rename_input.pack()
+    empty.pack()
+    rename_ID.pack(side=tk.LEFT)
+    quit_.pack(side=tk.RIGHT)
     
     rename.mainloop()
 
