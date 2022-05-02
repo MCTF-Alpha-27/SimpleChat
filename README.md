@@ -1,3 +1,2 @@
 # SimpleChat-thread
-SimpleChat的多线程版本，开发中<br>
-目前的bug：重新启动选项无效
+一个使用Python开发的简单的聊天室，支持安装插件
