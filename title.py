@@ -4,7 +4,7 @@
 from .lib.root import *
 
 __name__ = "标题更改"
-__version__ = "1.0"
+__version__ = "1.1"
 __author__ = "Jerry"
 
 def title():
@@ -16,7 +16,8 @@ def title():
 
     title_input = ttk.Entry(title)
 
-    empty = ttk.Label(title, text = "")
+    empty1 = ttk.Label(title, text = "")
+    empty2 = ttk.Label(title, text = "")
 
     def _title():
         nonlocal title_input
@@ -29,7 +30,8 @@ def title():
     
     title_input.grid(row=0, column=1)
 
-    empty.grid(row=2, column=0)
+    empty1.grid(row=1, column=0)
+    empty2.grid(row=2, column=0)
 
     title_button.grid(row=3, column=0)
     quit_.grid(row=3, column=2)
