@@ -4,7 +4,7 @@
 from .lib.root import *
 
 __name__ = "多姿多彩的ID"
-__version__ = "1.3"
+__version__ = "1.4"
 __author__ = "Jerry"
 
 def rename():
@@ -12,11 +12,14 @@ def rename():
     rename.title("更改ID")
     rename.minsize(300, 100)
 
+    rename_text = ttk.Label(rename, text = "输入你的ID❤~")
+
     rename_input = ttk.Entry(rename)
 
-    empty = ttk.Label(rename, text = "")
+    empty1 = ttk.Label(rename, text = "")
+    empty2 = ttk.Label(rename, text = "")
     
-    def ID_change():
+    def _rename():
         nonlocal rename_input
         with open("name.ini", "r") as f:
             last_ID = f.read()
@@ -26,13 +29,18 @@ def rename():
         msg.showinfo("更改ID","成功更改ID为%s"%(' "' + rename_input.get() + '"'))
         send_to_server('"%s" 将自己的ID更改为 "%s"\n'%(last_ID, rename_input.get()))
 
-    rename_ID = ttk.Button(rename, text = "更改ID", command = ID_change)
+    rename_button = ttk.Button(rename, text = "更改ID", command = _rename)
     quit_ = ttk.Button(rename, text = "完成", command = rename.destroy)
 
-    rename_input.pack()
-    empty.pack()
-    rename_ID.pack(side=tk.LEFT)
-    quit_.pack(side=tk.RIGHT)
+    rename_text.grid(row=0, column=0)
+
+    rename_input.grid(row=0, column=1)
+
+    empty1.grid(row=1, column=0)
+    empty2.grid(row=2, column=0)
+
+    rename_button.grid(row=3, column=0)
+    quit_.grid(row=3, column=2)
     
     rename.mainloop()
 
