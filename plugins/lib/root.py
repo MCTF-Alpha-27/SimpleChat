@@ -50,22 +50,21 @@ text_text = tk.Text(text_frame)
 config = ttk.Menubutton(root, text = "管理") # 管理按钮
 config_menu = tk.Menu(config, tearoff = False) # 下拉菜单
 
-# find_plugin_menu = tk.Menu(config_menu, tearoff = False) # 插件显示主菜单
-# find_plugin_menu_enabled = tk.Menu(find_plugin_menu, tearoff = False) # 启用的插件的主菜单
-# find_plugin_menu_disabled = tk.Menu(find_plugin_menu, tearoff = False) # 禁用的插件的主菜单
-"""
-for i in os.listdir(".\\plugin"):
+find_plugin_menu = tk.Menu(config_menu, tearoff = False) # 插件显示主菜单
+find_plugin_menu_enabled = tk.Menu(find_plugin_menu, tearoff = False) # 启用的插件的主菜单
+find_plugin_menu_disabled = tk.Menu(find_plugin_menu, tearoff = False) # 禁用的插件的主菜单
+
+for i in os.listdir(".\\plugins"):
     if i[-3:] == ".py" or i[-9:] == ".disabled":
         config_menu.add_cascade(label = "插件管理", menu = find_plugin_menu) # 将插件显示主菜单绑定至管理菜单主菜单
         break
         
-for i in os.listdir(".\\plugin"):
+for i in os.listdir(".\\plugins"):
     if i[-3:] == ".py":
         find_plugin_menu.add_cascade(label = "启用的插件", menu = find_plugin_menu_enabled) # 将启用的插件的主菜单绑定至管理菜单主菜单
         break
 
-for i in os.listdir(".\\plugin"):
+for i in os.listdir(".\\plugins"):
     if i[-9:] == ".disabled":
         find_plugin_menu.add_cascade(label = "禁用的插件", menu = find_plugin_menu_disabled) # 将禁用的插件的主菜单绑定至管理菜单主菜单
         break
-"""
