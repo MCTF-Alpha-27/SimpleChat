@@ -24,6 +24,32 @@ def send_to_server(text):
     s.send(bytes(text, "utf-8"))
     ef.wait(0.1)
 
+def showurl(url):
+    "显示网址"
+    url_root = tk.Tk()
+
+    def open_and_quit():
+        nonlocal url_root, url
+        ef.start(url)
+        url_root.destroy()
+
+    url_root.title("网页链接")
+    url_root.minsize(300, 100)
+
+    url_yes_or_no_text = tk.Label(url_root, text="你确定要打开以下链接吗？", fg="red")
+    url_text = tk.Label(url_root, text=url, fg="blue")
+    url_do_not_open_url_you_dont_trust_text = tk.Label(url_root, text="永远不要打开你不信任的链接", fg="red")
+    url_yes = ttk.Button(url_root, text="打开它！", command=open_and_quit)
+    url_no = ttk.Button(url_root, text="关闭此链接", command=url_root.destroy)
+
+    url_yes_or_no_text.grid(row=0, column=1)
+    url_text.grid(row=1, column=1)
+    url_do_not_open_url_you_dont_trust_text.grid(row=2, column=1)
+    url_yes.grid(row=3, column=0)
+    url_no.grid(row=3, column=2)
+
+    url_root.mainloop()
+
 def send(): # 发送消息
     send_msg = text_text.get("0.0", END)
     s.send(bytes(send_msg, "utf-8"))
