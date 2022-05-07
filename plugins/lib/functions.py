@@ -13,6 +13,8 @@ def restart(): # 重启
     try:
         sys.exit(1)
     except SystemExit:
+        os.remove("msg_type.ini")
+        os.remove("name.ini")
         ef.start("run.bat")
 
 def eof(): # 退出
@@ -21,6 +23,8 @@ def eof(): # 退出
     try:
         sys.exit(1)
     except SystemExit:
+        os.remove("msg_type.ini")
+        os.remove("name.ini")
         os.system("taskkill /f /im pythonw.exe /t")
 
 def open_plugin_dir(): # 打开插件文件夹

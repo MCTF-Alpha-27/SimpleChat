@@ -31,7 +31,7 @@ def handle_client_in(conn, addr):  # 通知谁进入了聊天室
                 msg_type = f.read()
             msg = conn.recv(1024)
             brodcast(msg, ID, msg_type=msg_type)
-        except Exception as e:
+        except Exception:
             conn.close()
             del client[conn]
             brodcast(bytes("%s 离开聊天室\n" % ID, "utf-8"), msg_type="system")

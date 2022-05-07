@@ -6,28 +6,33 @@ import importlib
 import json
 from .lib.root import *
 # TODO: 优化插件管理器UI
-# def show_plugin_info(): # 启用的插件信息
-    # msg.showinfo("插件信息","插件名: %s\n版本: %s\n作者: %s\n%s"%(enable_name, version, author, description))
-    # display("插件列表    版本    作者    简介")
-    # display("-------    ----    ----   ----")
-    # display("%s          %s      %s     %s"%(name, version, author, description))
-"""
-def disable_plugin(): # 禁用插件
-    os.rename("plugin\\" + name + ".py", "plugin\\" + name + ".py.disabled")
-    try:
-        sys.exit(1)
-    except SystemExit:
-        ef.start("run.bat")
-        os.system("taskkill /f /im pythonw.exe")
-
-def enable_plugin(): # 启用插件
-    os.rename("plugin\\" + disable_name + ".py.disabled", "plugin\\" + disable_name + ".py")
-    try:
-        sys.exit(1)
-    except SystemExit:
-        ef.start("run.bat")
-        os.system("taskkill /f /im pythonw.exe")
-"""
+#
+#                       _oo0oo_
+#                      o8888888o
+#                      88" . "88
+#                      (| -_- |)
+#                      0\  =  /0
+#                    ___/`---'\___
+#                  .' \\|     |# '.
+#                 / \\|||  :  |||# \
+#                / _||||| -:- |||||- \
+#               |   | \\\  -  #/ |   |
+#               | \_|  ''\---/''  |_/ |
+#               \  .-\__  '-'  ___/-. /
+#             ___'. .'  /--.--\  `. .'___
+#          ."" '<  `.___\_<|>_/___.' >' "".
+#         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+#         \  \ `_.   \_ __\ /__ _/   .-` /  /
+#     =====`-.____`.___ \_____/___.-`___.-'=====
+#                       `=---='
+#
+#
+#     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#           佛祖保佑         插件管理器不会出BUG
+#
+#
+#
 with open(".\\plugins\\plugin_info.json","w",encoding="ansi") as f: # 创建插件json
     f.write("")
 for i in os.listdir(".\\plugins"): # 插件文件夹下所有文件
@@ -51,24 +56,30 @@ for i in os.listdir(".\\plugins"): # 插件文件夹下所有文件
                 f.write(json.dumps(plugin_list, sort_keys = True, separators = (", ", ": ")))
                 f.write("\n")
 
-            # _plugin = tk.Menu(find_plugin_menu_enabled, tearoff = False)
+            _plugin = tk.Menu(find_plugin_menu_enabled, tearoff = False)
 
-            # for i in plugin_list: # 遍历插件信息字典
-                # name = i
+            for i in plugin_list: # 遍历插件信息字典
+                name = i
                 
-                # version = plugin_list[name]["version"] # 版本
-                # author = plugin_list[name]["author"] # 作者
-                # description = plugin_list[name]["description"] # 介绍
+                version = plugin_list[name]["version"] # 版本
+                author = plugin_list[name]["author"] # 作者
+                description = plugin_list[name]["description"] # 介绍
 
-                # show_plugin_info()
+                def disable_plugin(): # 禁用插件
+                    global name
+                    os.rename(name, name + ".disabled")
 
-                # find_plugin_menu_enabled.add_cascade(label = i, menu = _plugin)
-                # _plugin.add_command(label = "插件信息", command = show_enable_plugin_info)
-                # _plugin.add_command(label = "禁用", command = disable_plugin)
+                def enable_plugin(): # 启用插件
+                    global name
+                    os.rename(name + ".py.disabled", name)
 
-    # elif i[-9:] == ".disabled": # 判断该文件是否为被禁用的插件
-        # _plugin = tk.Menu(find_plugin_menu_disabled, tearoff = False)
-        # disable_name = i.replace(".py.disabled", "")
+                find_plugin_menu_enabled.add_cascade(label = i, menu = _plugin)
+                _plugin.add_command(label = "插件信息", command = lambda: msg.showinfo("插件信息", "作者: %s\n版本: %s\n%s"%(author, version, description)))
+                _plugin.add_command(label = "禁用", command = disable_plugin)
 
-        # find_plugin_menu_disabled.add_cascade(label = disable_name, menu = _plugin)
-        # _plugin.add_command(label = "启用", command = enable_plugin)
+    elif i[-9:] == ".disabled": # 判断该文件是否为被禁用的插件
+        _plugin = tk.Menu(find_plugin_menu_disabled, tearoff = False)
+        disable_name = i.replace(".py.disabled", "")
+
+        find_plugin_menu_disabled.add_cascade(label = disable_name, menu = _plugin)
+        _plugin.add_command(label = "启用", command = enable_plugin)

@@ -13,14 +13,42 @@ from address import *
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 创建socket
 
-def display(text, end = "\n"): # 显示消息
+def display(text, end = "\n"):
+    "向客户端发送消息"
     text_message.insert(END, text)
     text_message.insert(END, end)
 
-def send_to_server(text): # 向服务器发送信息
+def send_to_server(text): 
+    "向服务器发送信息"
     ef.wait(0.1)
     s.send(bytes(text, "utf-8"))
     ef.wait(0.1)
+
+def showurl(url):
+    "显示网址"
+    url_root = tk.Tk()
+
+    def open_and_quit():
+        nonlocal url_root, url
+        ef.start(url)
+        url_root.destroy()
+
+    url_root.title("网页链接")
+    url_root.minsize(300, 100)
+
+    url_yes_or_no_text = tk.Label(url_root, text="你确定要打开以下链接吗？", fg="red")
+    url_text = tk.Label(url_root, text=url, fg="blue")
+    url_do_not_open_url_you_dont_trust_text = tk.Label(url_root, text="永远不要打开你不信任的链接", fg="red")
+    url_yes = ttk.Button(url_root, text="打开它！", command=open_and_quit)
+    url_no = ttk.Button(url_root, text="关闭此链接", command=url_root.destroy)
+
+    url_yes_or_no_text.grid(row=0, column=1)
+    url_text.grid(row=1, column=1)
+    url_do_not_open_url_you_dont_trust_text.grid(row=2, column=1)
+    url_yes.grid(row=3, column=0)
+    url_no.grid(row=3, column=2)
+
+    url_root.mainloop()
 
 def send(): # 发送消息
     send_msg = text_text.get("0.0", END)
@@ -50,22 +78,21 @@ text_text = tk.Text(text_frame)
 config = ttk.Menubutton(root, text = "管理") # 管理按钮
 config_menu = tk.Menu(config, tearoff = False) # 下拉菜单
 
-# find_plugin_menu = tk.Menu(config_menu, tearoff = False) # 插件显示主菜单
-# find_plugin_menu_enabled = tk.Menu(find_plugin_menu, tearoff = False) # 启用的插件的主菜单
-# find_plugin_menu_disabled = tk.Menu(find_plugin_menu, tearoff = False) # 禁用的插件的主菜单
-"""
-for i in os.listdir(".\\plugin"):
+find_plugin_menu = tk.Menu(config_menu, tearoff = False) # 插件显示主菜单
+find_plugin_menu_enabled = tk.Menu(find_plugin_menu, tearoff = False) # 启用的插件的主菜单
+find_plugin_menu_disabled = tk.Menu(find_plugin_menu, tearoff = False) # 禁用的插件的主菜单
+
+for i in os.listdir(".\\plugins"):
     if i[-3:] == ".py" or i[-9:] == ".disabled":
         config_menu.add_cascade(label = "插件管理", menu = find_plugin_menu) # 将插件显示主菜单绑定至管理菜单主菜单
         break
         
-for i in os.listdir(".\\plugin"):
+for i in os.listdir(".\\plugins"):
     if i[-3:] == ".py":
         find_plugin_menu.add_cascade(label = "启用的插件", menu = find_plugin_menu_enabled) # 将启用的插件的主菜单绑定至管理菜单主菜单
         break
 
-for i in os.listdir(".\\plugin"):
+for i in os.listdir(".\\plugins"):
     if i[-9:] == ".disabled":
         find_plugin_menu.add_cascade(label = "禁用的插件", menu = find_plugin_menu_disabled) # 将禁用的插件的主菜单绑定至管理菜单主菜单
         break
-"""
