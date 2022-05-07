@@ -6,12 +6,33 @@ import importlib
 import json
 from .lib.root import *
 # TODO: 优化插件管理器UI
-# def show_plugin_info(): # 启用的插件信息
-    # msg.showinfo("插件信息","插件名: %s\n版本: %s\n作者: %s\n%s"%(enable_name, version, author, description))
-    # display("插件列表    版本    作者    简介")
-    # display("-------    ----    ----   ----")
-    # display("%s          %s      %s     %s"%(name, version, author, description))
-
+#
+#                       _oo0oo_
+#                      o8888888o
+#                      88" . "88
+#                      (| -_- |)
+#                      0\  =  /0
+#                    ___/`---'\___
+#                  .' \\|     |# '.
+#                 / \\|||  :  |||# \
+#                / _||||| -:- |||||- \
+#               |   | \\\  -  #/ |   |
+#               | \_|  ''\---/''  |_/ |
+#               \  .-\__  '-'  ___/-. /
+#             ___'. .'  /--.--\  `. .'___
+#          ."" '<  `.___\_<|>_/___.' >' "".
+#         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+#         \  \ `_.   \_ __\ /__ _/   .-` /  /
+#     =====`-.____`.___ \_____/___.-`___.-'=====
+#                       `=---='
+#
+#
+#     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#           佛祖保佑         插件管理器不会出BUG
+#
+#
+#
 with open(".\\plugins\\plugin_info.json","w",encoding="ansi") as f: # 创建插件json
     f.write("")
 for i in os.listdir(".\\plugins"): # 插件文件夹下所有文件
