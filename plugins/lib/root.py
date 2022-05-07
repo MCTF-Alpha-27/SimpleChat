@@ -13,11 +13,13 @@ from address import *
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 创建socket
 
-def display(text, end = "\n"): # 显示消息
+def display(text, end = "\n"):
+    "向客户端发送消息"
     text_message.insert(END, text)
     text_message.insert(END, end)
 
-def send_to_server(text): # 向服务器发送信息
+def send_to_server(text): 
+    "向服务器发送信息"
     ef.wait(0.1)
     s.send(bytes(text, "utf-8"))
     ef.wait(0.1)
